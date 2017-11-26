@@ -7,11 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    List<NationObject> mDataset;
+    public static final String JSON_URL = "https://restcountries.eu/rest/v2/all";
+    private RecyclerViewAdapter mAdapter;
+
 
     private RecyclerView listRecyclerview;
     @Override
@@ -20,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+      //  ImageView img = (ImageView) findViewById(R.id.img);
+
+
+
+
+      //  Picasso.with(MainActivity.this).load("").resize(500,400).into(img);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,11 +53,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Log.d("Starting to fetch data","303");
 
-        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
-        listRecyclerview.setHasFixedSize(true);
-        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-      //  listRecyclerview.setAdapter(pListAdapter);
+        sendRequest();
+
+
+        Log.d("Done fetching data","403");
+
+      //  Log.d("list Test",mDataset.get(0).getCountry());
+
+
+
 
 
     }
@@ -60,4 +89,50 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+    private void sendRequest(){
+
+
+        StringRequest stringRequest = new StringRequest(JSON_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //success - parse JSON
+
+                        Log.d("fetched data",response.substring(0,6000));
+
+
+                        JsonParse pj = new JsonParse(response);
+                        pj.parseJSON();
+                        mDataset = pj.getNations();
+
+                        Log.d("Response Test",mDataset.get(0).getCountry());
+
+                        mAdapter = new RecyclerViewAdapter(mDataset,getApplicationContext());
+
+
+                        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
+                        listRecyclerview.setHasFixedSize(true);
+                        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                        listRecyclerview.setAdapter(mAdapter);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+//The following lines add the request to the volley queue
+//These are very important
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+
 }
+

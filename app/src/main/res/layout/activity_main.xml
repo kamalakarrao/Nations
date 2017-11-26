@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.hksapps.nations.MainActivity">
 
+
+
+
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,9 +22,23 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
     </android.support.design.widget.AppBarLayout>
 
+
     <include layout="@layout/content_main" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+        android:background="#E0E0E0"
+        android:orientation="vertical"
+        android:scrollbars="none"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
