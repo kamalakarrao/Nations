@@ -3,15 +3,16 @@ package com.hksapps.nations;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,10 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-    //    MenuItem search = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) findViewById(R.id.search);
-
-  /*      searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
@@ -88,10 +89,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                //   mAdapter.getFilter().filter(newText);
+
+
+              //    mAdapter.getFilter().filter(newText);
+
+                filter(newText.toString());
+
+
                 return true;
             }
-        });*/
+        });
         return true;
 
     }
@@ -152,6 +159,27 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
+
+    private void filter(String text) {
+        //new array list that will hold the filtered data
+        ArrayList<NationObject> filterdNames = new ArrayList<>();
+
+        //looping through existing elements
+        for (NationObject s : mDataset) {
+            //if the existing elements contains the search input
+            if (s.getCountry().toLowerCase().startsWith(text.toLowerCase())) {
+                //adding the element to filtered list
+                filterdNames.add(s);
+            }
+        }
+
+        //calling a method of the adapter class and passing the filtered list
+        mAdapter.filterList(filterdNames);
+    }
+
+
 
 
 }
