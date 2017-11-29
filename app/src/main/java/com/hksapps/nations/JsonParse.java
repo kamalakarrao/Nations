@@ -34,13 +34,13 @@ public class JsonParse {
 
     private String json;
 
-    public JsonParse(String json){
+    public JsonParse(String json) {
 
         this.json = json;
     }
 
-    protected void parseJSON(){
-        JSONObject jsonObject=null;
+    protected void parseJSON() {
+        JSONObject jsonObject = null;
 
         try {
 
@@ -61,13 +61,11 @@ public class JsonParse {
             AllNations = new ArrayList<NationObject>();
 
 
-
-            for(int i = 0; i< nations.length(); i++){
-                NationObject nationObject =  new NationObject();
-
+            for (int i = 0; i < nations.length(); i++) {
+                NationObject nationObject = new NationObject();
 
 
-               //  JSONArray array = nations.getJSONArray(0);
+                //  JSONArray array = nations.getJSONArray(0);
 
                 jsonObject = nations.getJSONObject(i);
 
@@ -78,8 +76,32 @@ public class JsonParse {
                 region[i] = jsonObject.getString("region");
                 population[i] = jsonObject.getString("population");
                 subregion[i] = jsonObject.getString("subregion");
+              /*  if(jsonObject.has("callingCodes")){
+                    Log.e("countrycode",jsonObject.getJSONArray("callingCodes").getString(0)) ;
 
-             //   Log.d("first country",countries[0]);
+                }*/
+
+
+             callingCode[i] = jsonObject.getJSONArray("callingCodes").getString(0);
+                  timezone[i] = jsonObject.getJSONArray("timezones").getString(0);
+
+             //   lat_long[i] = jsonObject.getJSONArray("latlng").getString(0) + "$" + jsonObject.getJSONArray("latlng").getString(1);
+
+                //  Log.d("calling codes",callingCode[i]);
+
+
+            //   language[i] = jsonObject.getJSONArray("languages").getJSONObject(0).getString("name");
+JSONArray js = jsonObject.getJSONArray("languages");
+                String lang = "" ;
+                for(int k=0;k<js.length();k++ ){
+
+                    String temp = js.getJSONObject(k).getString("name");
+
+
+                   lang = lang+temp+"$";
+                }
+
+                language[i] = lang;
 
 
                 nationObject.setCountry(countries[i]);
@@ -88,8 +110,11 @@ public class JsonParse {
                 nationObject.setRegion(region[i]);
                 nationObject.setPopulation(population[i]);
                 nationObject.setSubregion(subregion[i]);
+              nationObject.setCallingCode(callingCode[i]);
+              //    nationObject.setLat_long(lat_long[i]);
+                nationObject.setTimezone(timezone[i]);
+                nationObject.setLanguage(language[i]);
                 AllNations.add(nationObject);
-
 
 
             }
@@ -97,8 +122,8 @@ public class JsonParse {
             e.printStackTrace();
         }
     }
-    List<NationObject> getNations()
-    {
+
+    List<NationObject> getNations() {
         //function to return the final populated list
         return AllNations;
     }

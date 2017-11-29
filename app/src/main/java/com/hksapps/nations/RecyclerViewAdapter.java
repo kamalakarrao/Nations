@@ -37,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         this.nationslist = nationslist;
         this.context = context;
 
-        Log.d("Testing nationlist", nationslist.get(0).getCountry());
+//        Log.d("Testing nationlist", nationslist.get(0).getCountry());
 
     }
 
@@ -70,6 +70,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                     i.putExtra("region",nationObject.getRegion());
                     i.putExtra("subregion",nationObject.getSubregion());
                     i.putExtra("population",nationObject.getPopulation());
+                    i.putExtra("callingcode",nationObject.getCallingCode());
+                    i.putExtra("latlng",nationObject.getLat_long());
+                    i.putExtra("timezone",nationObject.getTimezone());
+                    i.putExtra("language",nationObject.getLanguage());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
 

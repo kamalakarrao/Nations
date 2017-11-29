@@ -25,8 +25,12 @@ public class DetailsScreen extends AppCompatActivity {
         String  subregion_text =  getIntent().getStringExtra("subregion");
         String  capital_text =  getIntent().getStringExtra("capital");
         String  flag_text =  getIntent().getStringExtra("flag");
+        String callingCode_text =  getIntent().getStringExtra("callingcode");
+        String latlng_text =  getIntent().getStringExtra("latlng");
+        String timezone_text =  getIntent().getStringExtra("timezone");
+        String language_text =  getIntent().getStringExtra("language");
 
-        Toast.makeText(this, population_text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, language_text, Toast.LENGTH_SHORT).show();
         population.setText(population_text);
         country.setText(country_text);
         capital.setText(capital_text);

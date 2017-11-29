@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         pj.parseJSON();
                         mDataset = pj.getNations();
 
-                        Log.d("Response Test",mDataset.get(0).getCountry());
+                   //     Log.d("Response Test",mDataset.get(0).getCountry());
 
                         mAdapter = new RecyclerViewAdapter(mDataset,getApplicationContext());
 
