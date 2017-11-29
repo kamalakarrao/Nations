@@ -1,6 +1,7 @@
 package com.hksapps.nations;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.hksapps.nations.SvgLoaders.LoadSvgs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,8 +60,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             @Override
             public void onClick(View view) {
 
+                NationObject nationObject = nationslist.get(position);
+                Intent i = new Intent(context,DetailsScreen.class);
+                i.putExtra("mylist", (CharSequence) nationObject);
+                context.startActivity(i);
 
-                Toast.makeText(context, nationslist.get(position).getCountry(),Toast.LENGTH_SHORT);
+             //   Toast.makeText(context, nationslist.get(position).getCapital(),Toast.LENGTH_SHORT).show();
 
 
             }

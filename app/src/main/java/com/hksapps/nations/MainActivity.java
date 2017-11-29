@@ -41,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
       //  ImageView img = (ImageView) findViewById(R.id.img);
 
+        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
+        listRecyclerview.setHasFixedSize(true);
+        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
 
 
 
-      //  Picasso.with(MainActivity.this).load("").resize(500,400).into(img);
+        //  Picasso.with(MainActivity.this).load("").resize(500,400).into(img);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -141,10 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         mAdapter = new RecyclerViewAdapter(mDataset,getApplicationContext());
 
 
-                        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
-                        listRecyclerview.setHasFixedSize(true);
-                        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-                        listRecyclerview.setAdapter(mAdapter);
+                      listRecyclerview.setAdapter(mAdapter);
 
                     }
                 },
