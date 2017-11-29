@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hksapps.nations.SvgLoaders.LoadSvgs;
 
@@ -48,10 +49,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
 
 
       //  NationObject nationObject = mFilteredList.get(position);
+
+        holder.linear_Layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Toast.makeText(context, nationslist.get(position).getCountry(),Toast.LENGTH_SHORT);
+
+
+            }
+        });
 
     holder.country.setText(nationslist.get(position).getCountry());
 //Picasso.with(context).load(nationObject.getImageUrl().toString()).resize(500,400).into(holder.flag);
