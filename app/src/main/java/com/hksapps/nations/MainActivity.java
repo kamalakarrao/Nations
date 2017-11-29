@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         //looping through existing elements
         for (NationObject s : mDataset) {
             //if the existing elements contains the search input
-            if (s.getCountry().toLowerCase().startsWith(text.toLowerCase())) {
+            if (s.getCountry().toLowerCase().startsWith(text.toLowerCase())||s.getCapital().toLowerCase().startsWith(text.toLowerCase())) {
                 //adding the element to filtered list
                 filterdNames.add(s);
             }

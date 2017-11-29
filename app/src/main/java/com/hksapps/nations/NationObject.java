@@ -8,8 +8,8 @@ public class NationObject {
 
 
     private String country;
-    private String imageUrl;
-    private String region,population,subregion,callingCode,lat_long,timezone,language,capital;
+    private String imageUrl,borders;
+    private String region,population,subregion,callingCode,lat_long,timezone,language,capital,area,nativename,numeric_code,currencies;
 
     public  void setCountry(String country)
     {
@@ -137,5 +137,60 @@ public class NationObject {
         return capital;
     }
 
+
+    public void setArea(String area)
+    {
+        this.area=area;
+    }
+
+    public String getArea()
+    {
+        return area;
+    }
+
+
+    public void setNativename(String nativename)
+    {
+        this.nativename=nativename;
+    }
+
+    public String getNativename()
+    {
+        return nativename;
+    }
+
+
+    public void setNumeric_code(String numeric_code)
+    {
+        this.numeric_code=numeric_code;
+    }
+
+    public String getNumeric_code()
+    {
+        return numeric_code;
+    }
+
+
+
+    public void setCurrencies(String currencies)
+    {
+        this.currencies=currencies;
+    }
+
+    public String getCurrencies()
+    {
+        return currencies;
+    }
+
+
+    public void setBorders(String borders)
+    {
+        this.borders=borders;
+    }
+
+    public String getBorders()
+    {
+        return borders;
+    }
 
 }

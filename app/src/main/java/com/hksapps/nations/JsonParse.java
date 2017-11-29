@@ -25,6 +25,11 @@ public class JsonParse {
     public static String[] timezone;
     public static String[] language;
     public static String[] callingCode;
+    public static String[] area;
+    public static String[] nativename;
+    public static String[] numericCode;
+    public static String[] currencies;
+    public static String[] borders;
 
     private JSONArray nations = null;
 
@@ -57,6 +62,12 @@ public class JsonParse {
             timezone = new String[nations.length()];
             language = new String[nations.length()];
             callingCode = new String[nations.length()];
+            area = new String[nations.length()];
+            nativename = new String[nations.length()];
+            numericCode = new String[nations.length()];
+            currencies = new String[nations.length()];
+            borders = new String[nations.length()];
+
 
             AllNations = new ArrayList<NationObject>();
 
@@ -81,28 +92,48 @@ public class JsonParse {
 
                 }*/
 
+              area[i] = jsonObject.optString("area");
+              nativename[i] = jsonObject.optString("nativeName");
+              numericCode[i] = jsonObject.optString("numericCode");
 
-             callingCode[i] = jsonObject.getJSONArray("callingCodes").getString(0);
-                  timezone[i] = jsonObject.getJSONArray("timezones").getString(0);
-
-             //   lat_long[i] = jsonObject.getJSONArray("latlng").getString(0) + "$" + jsonObject.getJSONArray("latlng").getString(1);
-
-                //  Log.d("calling codes",callingCode[i]);
+              currencies[i] = jsonObject.getJSONArray("currencies").getJSONObject(0).optString("code")+"Ajju_Selena_Kuttan"+jsonObject.getJSONArray("currencies").getJSONObject(0).optString("name")+"Ajju_Selena_Kuttan"+jsonObject.getJSONArray("currencies").getJSONObject(0).optString("symbol");
 
 
-            //   language[i] = jsonObject.getJSONArray("languages").getJSONObject(0).getString("name");
-JSONArray js = jsonObject.getJSONArray("languages");
-                String lang = "" ;
-                for(int k=0;k<js.length();k++ ){
+
+
+                callingCode[i] = jsonObject.getJSONArray("callingCodes").getString(0);
+                timezone[i] = jsonObject.getJSONArray("timezones").getString(0);
+
+                lat_long[i] = jsonObject.getJSONArray("latlng").optString(0) + "$" + jsonObject.getJSONArray("latlng").optString(1);
+
+                Log.e("lat long", lat_long[i]);
+
+
+                //   language[i] = jsonObject.getJSONArray("languages").getJSONObject(0).getString("name");
+                JSONArray js = jsonObject.getJSONArray("languages");
+                String lang = "";
+                for (int k = 0; k < js.length(); k++) {
 
                     String temp = js.getJSONObject(k).getString("name");
 
 
-                   lang = lang+temp+"$";
+                    lang = lang + temp + "$";
                 }
 
                 language[i] = lang;
 
+
+
+
+                JSONArray borders_array = jsonObject.getJSONArray("borders");
+                String bdrs = "";
+                for (int k = 0; k < borders_array.length(); k++) {
+
+                    String temp_bdrs = borders_array.optString(k);
+
+                    bdrs = bdrs + temp_bdrs + "$";
+                }
+                        borders[i] = bdrs;
 
                 nationObject.setCountry(countries[i]);
                 nationObject.setimageUrl(imageUrls[i]);
@@ -110,10 +141,15 @@ JSONArray js = jsonObject.getJSONArray("languages");
                 nationObject.setRegion(region[i]);
                 nationObject.setPopulation(population[i]);
                 nationObject.setSubregion(subregion[i]);
-              nationObject.setCallingCode(callingCode[i]);
-              //    nationObject.setLat_long(lat_long[i]);
+                nationObject.setCallingCode(callingCode[i]);
+                nationObject.setLat_long(lat_long[i]);
                 nationObject.setTimezone(timezone[i]);
                 nationObject.setLanguage(language[i]);
+                nationObject.setNativename(nativename[i]);
+                nationObject.setNumeric_code(numericCode[i]);
+                nationObject.setCurrencies(currencies[i]);
+                nationObject.setArea(area[i]);
+                nationObject.setBorders(borders[i]);
                 AllNations.add(nationObject);
 
 
