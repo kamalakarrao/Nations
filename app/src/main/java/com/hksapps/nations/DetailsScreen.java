@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailsScreen extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class DetailsScreen extends AppCompatActivity {
         String  capital_text =  getIntent().getStringExtra("capital");
         String  flag_text =  getIntent().getStringExtra("flag");
 
-
+        Toast.makeText(this, population_text, Toast.LENGTH_SHORT).show();
         population.setText(population_text);
         country.setText(country_text);
         capital.setText(capital_text);

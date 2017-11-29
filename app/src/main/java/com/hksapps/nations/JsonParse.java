@@ -87,7 +87,7 @@ public class JsonParse {
                 nationObject.setCapital(capital[i]);
                 nationObject.setRegion(region[i]);
                 nationObject.setPopulation(population[i]);
-                nationObject.setPopulation(subregion[i]);
+                nationObject.setSubregion(subregion[i]);
                 AllNations.add(nationObject);
 
 
