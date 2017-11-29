@@ -1,6 +1,8 @@
 package com.hksapps.nations;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String JSON_URL = "https://restcountries.eu/rest/v2/all";
     private RecyclerViewAdapter mAdapter;
 
-
+private SharedPreferences p;
     private RecyclerView listRecyclerview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-      //  ImageView img = (ImageView) findViewById(R.id.img);
+         p = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
-        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
-        listRecyclerview.setHasFixedSize(true);
-        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+        //  ImageView img = (ImageView) findViewById(R.id.img);
+
 
 
 
@@ -54,8 +56,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Refreshing!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                sendRequest();
+               // startActivity(new Intent(MainActivity.this,MainActivity.class));
             }
         });
 
@@ -132,6 +137,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         //success - parse JSON
 
+
+                        p.edit().putString("jsondata", response).commit();
+
+                        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
+                        listRecyclerview.setHasFixedSize(true);
+                        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+
                         Log.d("fetched data",response.substring(0,6000));
 
 
@@ -151,7 +164,35 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                        String jData = p.getString("jsondata", "");
+                        if(jData.length()<=0){
+
+
+
+
+                            Toast.makeText(MainActivity.this, "Please Connect to Internet", Toast.LENGTH_SHORT).show();
+                        }else {
+
+                            listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
+                            listRecyclerview.setHasFixedSize(true);
+                            listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+                            Toast.makeText(MainActivity.this, "Offline Mode!", Toast.LENGTH_SHORT).show();
+
+                            JsonParse pj = new JsonParse(jData);
+                            pj.parseJSON();
+                            mDataset = pj.getNations();
+
+                            //     Log.d("Response Test",mDataset.get(0).getCountry());
+
+                            mAdapter = new RecyclerViewAdapter(mDataset,getApplicationContext());
+
+
+                            listRecyclerview.setAdapter(mAdapter);
+
+
+                        }
+
                     }
                 });
 //The following lines add the request to the volley queue

@@ -92,13 +92,11 @@ public class JsonParse {
 
                 }*/
 
-              area[i] = jsonObject.optString("area");
-              nativename[i] = jsonObject.optString("nativeName");
-              numericCode[i] = jsonObject.optString("numericCode");
+                area[i] = jsonObject.optString("area");
+                nativename[i] = jsonObject.optString("nativeName");
+                numericCode[i] = jsonObject.optString("numericCode");
 
-              currencies[i] = jsonObject.getJSONArray("currencies").getJSONObject(0).optString("code")+"Ajju_Selena_Kuttan"+jsonObject.getJSONArray("currencies").getJSONObject(0).optString("name")+"Ajju_Selena_Kuttan"+jsonObject.getJSONArray("currencies").getJSONObject(0).optString("symbol");
-
-
+                currencies[i] = jsonObject.getJSONArray("currencies").getJSONObject(0).optString("code") + "Ajju_Selena_Kuttan" + jsonObject.getJSONArray("currencies").getJSONObject(0).optString("name") + "Ajju_Selena_Kuttan" + jsonObject.getJSONArray("currencies").getJSONObject(0).optString("symbol");
 
 
                 callingCode[i] = jsonObject.getJSONArray("callingCodes").getString(0);
@@ -123,8 +121,6 @@ public class JsonParse {
                 language[i] = lang;
 
 
-
-
                 JSONArray borders_array = jsonObject.getJSONArray("borders");
                 String bdrs = "";
                 for (int k = 0; k < borders_array.length(); k++) {
@@ -133,7 +129,7 @@ public class JsonParse {
 
                     bdrs = bdrs + temp_bdrs + "$";
                 }
-                        borders[i] = bdrs;
+                borders[i] = bdrs;
 
                 nationObject.setCountry(countries[i]);
                 nationObject.setimageUrl(imageUrls[i]);
