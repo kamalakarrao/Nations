@@ -18,12 +18,17 @@ public class DetailsScreen extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        NationObject countryDetails = (NationObject) getIntent().getSerializableExtra("mylist");
+        String  country_text =  getIntent().getStringExtra("country");
+        String  population_text =  getIntent().getStringExtra("population");
+        String  region_text =  getIntent().getStringExtra("region");
+        String  subregion_text =  getIntent().getStringExtra("subregion");
+        String  capital_text =  getIntent().getStringExtra("capital");
+        String  flag_text =  getIntent().getStringExtra("flag");
 
 
-        population.setText(countryDetails.getPopulation().toString());
-        country.setText(countryDetails.getCountry().toString());
-        capital.setText(countryDetails.getCapital().toString());
+        population.setText(population_text);
+        country.setText(country_text);
+        capital.setText(capital_text);
 
     }
 }

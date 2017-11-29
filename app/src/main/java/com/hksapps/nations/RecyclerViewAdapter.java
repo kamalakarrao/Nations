@@ -2,6 +2,7 @@ package com.hksapps.nations;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,13 +61,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             @Override
             public void onClick(View view) {
 
+
                 NationObject nationObject = nationslist.get(position);
                 Intent i = new Intent(context,DetailsScreen.class);
-                i.putExtra("mylist", (CharSequence) nationObject);
+                    i.putExtra("country",nationObject.getCountry());
+                    i.putExtra("capital",nationObject.getCapital());
+                    i.putExtra("flag",nationObject.getImageUrl());
+                    i.putExtra("region",nationObject.getRegion());
+                    i.putExtra("subregion",nationObject.getSubregion());
+                    i.putExtra("population",nationObject.getPopulation());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
 
-             //   Toast.makeText(context, nationslist.get(position).getCapital(),Toast.LENGTH_SHORT).show();
 
+             /*   NationObject object = nationslist.get(position);
+                Intent intent = new Intent(context, DetailsScreen.class);
+                Bundle args = new Bundle();
+                args.putSerializable("ARRAYLIST",(Serializable)object);
+                intent.putExtra("BUNDLE",args);
+                context.startActivity(intent);*/
+
+             //   Toast.makeText(context, nationslist.get(position).getCapital(),Toast.LENGTH_SHORT).show();
 
             }
         });
