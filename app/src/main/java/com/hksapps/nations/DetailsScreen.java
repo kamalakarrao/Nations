@@ -40,7 +40,7 @@ public class DetailsScreen extends AppCompatActivity {
         TextView borders = (TextView) findViewById(R.id.borders_xml);
         TextView languages = (TextView) findViewById(R.id.languages_xml);
 
-        Button map = (Button) findViewById(R.id.map);
+        TextView map = (TextView) findViewById(R.id.map);
 
         Intent i = getIntent();
 
@@ -188,18 +188,26 @@ Longitude = latlng_array[1];
         svgs.LoadImages(flag_text, flag, this);
 
 
+        if(Latitude.length()>0&&Longitude.length()>0){
 
+
+            map.setVisibility(View.VISIBLE);
+        }else{
+
+            map.setVisibility(View.GONE);
+
+        }
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-if(Latitude.length()>0&&Longitude.length()>0){
 
-    String uri = String.format(Locale.ENGLISH, "geo:%f,%f", Double.parseDouble(Latitude), Double.parseDouble(Longitude));
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-    startActivity(intent);
+                String uri = String.format(Locale.ENGLISH, "geo:%3f,%3f", Double.parseDouble(Latitude), Double.parseDouble(Longitude));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+
+                startActivity(intent);
 
 }
-            }
+
         });
 
 

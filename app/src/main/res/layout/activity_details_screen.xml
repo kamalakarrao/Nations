@@ -595,7 +595,7 @@ android:scrollbars="none"
                   android:layout_marginLeft="15dp" />-->
 
 
-            <Button
+            <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
