@@ -1,16 +1,23 @@
 package com.hksapps.nations;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hksapps.nations.SvgLoaders.LoadSvgs;
 
+import java.util.Locale;
+
 public class DetailsScreen extends AppCompatActivity {
+
+    String Latitude,Longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,8 @@ public class DetailsScreen extends AppCompatActivity {
         TextView borders = (TextView) findViewById(R.id.borders_xml);
         TextView languages = (TextView) findViewById(R.id.languages_xml);
 
+        Button map = (Button) findViewById(R.id.map);
+
         Intent i = getIntent();
 
         String country_text = getIntent().getStringExtra("country");
@@ -52,6 +61,9 @@ public class DetailsScreen extends AppCompatActivity {
         if (latlng_text_all.length() > 2 && latlng_text_all.contains(",")) {
             String[] latlng_array = latlng_text_all.split(",");
 
+
+Latitude = latlng_array[0];
+Longitude = latlng_array[1];
             latlng_text = "Lat: " + latlng_array[0] + "\n" + "Lng: " + latlng_array[1];
         }
 
@@ -174,6 +186,22 @@ public class DetailsScreen extends AppCompatActivity {
 
         LoadSvgs svgs = new LoadSvgs();
         svgs.LoadImages(flag_text, flag, this);
+
+
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+if(Latitude.length()>0&&Longitude.length()>0){
+
+    String uri = String.format(Locale.ENGLISH, "geo:%f,%f", Double.parseDouble(Latitude), Double.parseDouble(Longitude));
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+    startActivity(intent);
+
+}
+            }
+        });
+
 
 
         Log.e("country_text", country_text);

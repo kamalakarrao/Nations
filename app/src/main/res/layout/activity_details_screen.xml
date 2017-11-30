@@ -325,40 +325,6 @@ android:scrollbars="none"
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/shadowbg"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <!--  <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
-
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:padding="10dp"
-                android:text="Co-ordinates: "
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/latlng_xml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:padding="10dp"
-                android:text=""
-                android:textSize="18dp" />
-        </LinearLayout>
 
 
 
@@ -577,6 +543,81 @@ android:scrollbars="none"
                 android:text=""
                 android:textSize="18dp" />
         </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/shadowbg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!--  <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="15dp" />-->
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="10dp"
+                android:text="Co-ordinates: "
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/latlng_xml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="10dp"
+                android:text=""
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/shadowbg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!--  <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="15dp" />-->
+
+
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="10dp"
+                android:text="Show on Map "
+                android:textSize="18dp"
+                android:id="@+id/map"
+                android:textStyle="bold" />
+
+
+           <!-- <TextView
+                android:id="@+id/latlng_xml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="10dp"
+                android:text=""
+                android:textSize="18dp" />-->
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
