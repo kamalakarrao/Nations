@@ -589,13 +589,20 @@ android:scrollbars="none"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+
+
+            <com.ubudu.gmaps.MapLayout
+                android:id="@+id/map"
+                android:layout_width="300dp"
+                android:layout_height="300dp" />
+
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="15dp" />-->
 
 
-            <TextView
+          <!--  <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -604,7 +611,7 @@ android:scrollbars="none"
                 android:text="Show on Map "
                 android:textSize="18dp"
                 android:id="@+id/map"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
 
            <!-- <TextView

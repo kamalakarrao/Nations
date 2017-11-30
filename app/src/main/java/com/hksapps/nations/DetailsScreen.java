@@ -1,28 +1,34 @@
 package com.hksapps.nations;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polygon;
 import com.hksapps.nations.SvgLoaders.LoadSvgs;
-
-import java.util.Locale;
+import com.ubudu.gmaps.MapLayout;
+import com.ubudu.gmaps.model.Marker;
+import com.ubudu.gmaps.model.Zone;
 
 public class DetailsScreen extends AppCompatActivity {
 
     String Latitude,Longitude;
+    MapLayout mapLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_screen);
+
+
 
         TextView population = (TextView) findViewById(R.id.population_xml);
         TextView country = (TextView) findViewById(R.id.country_xml);
@@ -33,14 +39,14 @@ public class DetailsScreen extends AppCompatActivity {
         TextView calling__code = (TextView) findViewById(R.id.callingcode_xml);
         TextView lat_lng_coordinates = (TextView) findViewById(R.id.latlng_xml);
         TextView timezone = (TextView) findViewById(R.id.timezone_xml);
-        TextView area = (TextView) findViewById(R.id.area_xml);
+        final TextView area = (TextView) findViewById(R.id.area_xml);
         TextView numeric_code = (TextView) findViewById(R.id.numericcode_xml);
         TextView currencies = (TextView) findViewById(R.id.currencies_xml);
         TextView native_name = (TextView) findViewById(R.id.nativename_xml);
         TextView borders = (TextView) findViewById(R.id.borders_xml);
         TextView languages = (TextView) findViewById(R.id.languages_xml);
 
-        TextView map = (TextView) findViewById(R.id.map);
+     //   TextView map = (TextView) findViewById(R.id.map);
 
         Intent i = getIntent();
 
@@ -188,16 +194,61 @@ Longitude = latlng_array[1];
         svgs.LoadImages(flag_text, flag, this);
 
 
+        mapLayout = (MapLayout) findViewById(R.id.map);
+
+        mapLayout.init(this);
+
         if(Latitude.length()>0&&Longitude.length()>0){
 
 
-            map.setVisibility(View.VISIBLE);
+            mapLayout.setVisibility(View.VISIBLE);
         }else{
 
-            map.setVisibility(View.GONE);
+            mapLayout.setVisibility(View.GONE);
 
         }
-        map.setOnClickListener(new View.OnClickListener() {
+
+
+     //   mapLayout.markLocation(Double.parseDouble(Latitude+"000"), Double.parseDouble(Longitude+"000"),1);
+final String countryTitle = country_text;
+
+        mapLayout.setEventListener(new MapLayout.EventListener() {
+
+            @Override
+            public void onMapReady() {
+                // called when map layout is ready to handle API calls
+
+
+                mapLayout.addMarker("test_markers", new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude))
+                        ,countryTitle );
+
+
+                LatLng coordinate =new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude)); //Store these lat lng values somewhere. These should be constant.
+                CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
+                        coordinate, 6);
+                mapLayout.getMap().animateCamera(location);
+                mapLayout.updateCamera(true);
+
+            }
+
+            @Override
+            public void onZoneClicked(Zone zone, Polygon polygon) {
+                Log.i("","Polygon clicked: "+zone.getName()+", polygon id: "+polygon.getId());
+            }
+
+            @Override
+            public void onMarkerClicked(Marker marker, com.google.android.gms.maps.model.Marker marker1) {
+
+            }
+
+
+        });
+
+
+
+
+mapLayout.updateCamera(true);
+       /* map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -208,7 +259,7 @@ Longitude = latlng_array[1];
 
 }
 
-        });
+        });*/
 
 
 
@@ -230,4 +281,7 @@ Longitude = latlng_array[1];
 
 
     }
+
+
+
 }
