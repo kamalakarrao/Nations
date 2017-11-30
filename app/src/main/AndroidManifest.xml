@@ -22,6 +22,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailsScreen"></activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDXE0vOSE1v8sTM3NhW4jYQZ61sUAH9lxM"/>
+
     </application>
+
+
+
 
 </manifest>

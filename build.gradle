@@ -3,6 +3,7 @@
 buildscript {
     
     repositories {
+        maven { url 'http://nexus.ubudu.com:8081/nexus/content/groups/public/' }
         google()
         jcenter()
     }
