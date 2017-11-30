@@ -5,7 +5,7 @@
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search_white_24dp"
-        android:title="Search Country or Capital"
+        android:title="Search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>

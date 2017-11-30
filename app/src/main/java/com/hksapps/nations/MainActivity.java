@@ -87,6 +87,9 @@ private SharedPreferences p;
 
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+
+        searchView.setQueryHint("Search for Country or Capital ");
+
        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

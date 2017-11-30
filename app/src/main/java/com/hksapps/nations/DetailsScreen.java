@@ -225,7 +225,7 @@ final String countryTitle = country_text;
 
                 LatLng coordinate =new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude)); //Store these lat lng values somewhere. These should be constant.
                 CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
-                        coordinate, 6);
+                        coordinate, 5);
                 mapLayout.getMap().animateCamera(location);
                 mapLayout.updateCamera(true);
 
