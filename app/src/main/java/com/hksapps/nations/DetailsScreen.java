@@ -45,6 +45,7 @@ public class DetailsScreen extends AppCompatActivity {
         TextView native_name = (TextView) findViewById(R.id.nativename_xml);
         TextView borders = (TextView) findViewById(R.id.borders_xml);
         TextView languages = (TextView) findViewById(R.id.languages_xml);
+        TextView description = (TextView) findViewById(R.id.description);
 
      //   TextView map = (TextView) findViewById(R.id.map);
 
@@ -280,7 +281,34 @@ mapLayout.updateCamera(true);
         Log.e("borders_text", borders_text);
 
 
+
+        StringBuilder str = new StringBuilder();
+        str.append(country_text+" is a country in "+ region_text +" with the area of "+area_text+" sq kms.");
+        str.append(" and it's subregions are "+subregion_text+".");
+        if(!(timezone_text.equals("")||timezone_text==null))
+        str.append(" The standard time observed throughout the "+country_text+ " with the time offset of "+timezone_text+".");
+        if(!(callingCode_text.equals("")||callingCode_text==null))
+            str.append(" The calling code is "+callingCode_text+"." );
+        str.append(" The capital of "+country_text+ " is "+capital_text+".");
+        if(!(borders_text.equals("")||timezone_text==null))
+            str.append("The neighbouring countries are "+borders_text);
+
+        description.setText(str);
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
