@@ -1,7 +1,5 @@
 package com.hksapps.nations;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +102,7 @@ public class JsonParse {
 
                 lat_long[i] = jsonObject.getJSONArray("latlng").optString(0) + "$" + jsonObject.getJSONArray("latlng").optString(1);
 
-                Log.e("lat long", lat_long[i]);
+             //   Log.e("lat long", lat_long[i]);
 
 
                 //   language[i] = jsonObject.getJSONArray("languages").getJSONObject(0).getString("name");

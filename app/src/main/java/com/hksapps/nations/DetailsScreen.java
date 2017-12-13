@@ -264,7 +264,7 @@ mapLayout.updateCamera(true);
 
 
 
-        Log.e("country_text", country_text);
+      /*  Log.e("country_text", country_text);
         Log.e("population_text", population_text);
         Log.e("region_text", region_text);
         Log.e("subregion_text", subregion_text);
@@ -278,7 +278,7 @@ mapLayout.updateCamera(true);
         Log.e("numericcode_text", numericcode_text);
         Log.e("currencies_text", currencies_text);
         Log.e("nativename_text", nativename_text);
-        Log.e("borders_text", borders_text);
+        Log.e("borders_text", borders_text);*/
 
 
 

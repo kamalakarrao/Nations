@@ -3,7 +3,6 @@ package com.hksapps.nations;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public RecyclerViewAdapter(List<NationObject> nationslist, Context context) {
         super();
 
-        Log.d("Testing adapter", "In constructor of RecyclerViewAdapter");
+    //    Log.d("Testing adapter", "In constructor of RecyclerViewAdapter");
 
         mArrayList = (ArrayList<NationObject>) nationslist;
         mFilteredList = (ArrayList<NationObject>) nationslist;
@@ -99,7 +98,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     LoadSvgs svgs = new LoadSvgs();
     svgs.LoadImages(nationslist.get(position).getImageUrl(), holder.flag, context);
 
-    Log.d("Testing image Url", nationslist.get(position).getImageUrl());
+ //   Log.d("Testing image Url", nationslist.get(position).getImageUrl());
 
 
 }

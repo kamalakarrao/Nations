@@ -1,8 +1,6 @@
 package com.hksapps.nations;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -11,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +29,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String JSON_URL = "https://restcountries.eu/rest/v2/all";
     private RecyclerViewAdapter mAdapter;
 
-private SharedPreferences p;
+    //private SharedPreferences p;
     private RecyclerView listRecyclerview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +39,13 @@ private SharedPreferences p;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-         p = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+      //  Paper.init(this);
+
+
+        // p = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
 
 
         //  ImageView img = (ImageView) findViewById(R.id.img);
-
-
 
 
         //  Picasso.with(MainActivity.this).load("").resize(500,400).into(img);
@@ -60,21 +59,18 @@ private SharedPreferences p;
                         .setAction("Action", null).show();
 
                 sendRequest();
-               // startActivity(new Intent(MainActivity.this,MainActivity.class));
+                // startActivity(new Intent(MainActivity.this,MainActivity.class));
             }
         });
 
-        Log.d("Starting to fetch data","303");
+     //   Log.d("Starting to fetch data", "303");
 
         sendRequest();
 
 
-        Log.d("Done fetching data","403");
+      //  Log.d("Done fetching data", "403");
 
-      //  Log.d("list Test",mDataset.get(0).getCountry());
-
-
-
+        //  Log.d("list Test",mDataset.get(0).getCountry());
 
 
     }
@@ -90,7 +86,7 @@ private SharedPreferences p;
 
         searchView.setQueryHint("Search for Country or Capital ");
 
-       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
@@ -101,8 +97,7 @@ private SharedPreferences p;
             public boolean onQueryTextChange(String newText) {
 
 
-
-              //    mAdapter.getFilter().filter(newText);
+                //    mAdapter.getFilter().filter(newText);
 
                 filter(newText.toString());
 
@@ -129,9 +124,7 @@ private SharedPreferences p;
     }
 
 
-
-
-    private void sendRequest(){
+    private void sendRequest() {
 
 
         StringRequest stringRequest = new StringRequest(JSON_URL,
@@ -140,45 +133,55 @@ private SharedPreferences p;
                     public void onResponse(String response) {
                         //success - parse JSON
 
+                  //      Paper.book().write("Paper_Json_Data", response);
 
-                        p.edit().putString("jsondata", response).commit();
+                        //   p.edit().putString("jsondata", response).commit();
 
                         listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
                         listRecyclerview.setHasFixedSize(true);
-                        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                        listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
 
-                        Log.d("fetched data",response.substring(0,6000));
+                      //  Log.d("fetched data", response.substring(0, 6000));
 
 
                         JsonParse pj = new JsonParse(response);
                         pj.parseJSON();
                         mDataset = pj.getNations();
 
-                   //     Log.d("Response Test",mDataset.get(0).getCountry());
+                        //     Log.d("Response Test",mDataset.get(0).getCountry());
 
-                        mAdapter = new RecyclerViewAdapter(mDataset,getApplicationContext());
+                        mAdapter = new RecyclerViewAdapter(mDataset, getApplicationContext());
 
 
-                      listRecyclerview.setAdapter(mAdapter);
+                        listRecyclerview.setAdapter(mAdapter);
 
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String jData = p.getString("jsondata", "");
-                        if(jData.length()<=0){
+
+                        Toast.makeText(MainActivity.this, "Please Connect to Internet", Toast.LENGTH_SHORT).show();
 
 
+                        // String jData = p.getString("jsondata", "");
+                        /*String jData = "";
+                        String responseFromPaper = Paper.book().read("Paper_Json_Data");
+                        if (responseFromPaper != null) {
+                            jData = responseFromPaper;
+                        }
+
+                        Toast.makeText(MainActivity.this, jData, Toast.LENGTH_SHORT).show();
+                        if (jData.length() <= 0) {
 
 
                             Toast.makeText(MainActivity.this, "Please Connect to Internet", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
 
                             listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
                             listRecyclerview.setHasFixedSize(true);
-                            listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                            listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
                             Toast.makeText(MainActivity.this, "Offline Mode!", Toast.LENGTH_SHORT).show();
 
@@ -188,13 +191,13 @@ private SharedPreferences p;
 
                             //     Log.d("Response Test",mDataset.get(0).getCountry());
 
-                            mAdapter = new RecyclerViewAdapter(mDataset,getApplicationContext());
+                            mAdapter = new RecyclerViewAdapter(mDataset, getApplicationContext());
 
 
                             listRecyclerview.setAdapter(mAdapter);
 
 
-                        }
+                        }*/
 
                     }
                 });
@@ -205,7 +208,6 @@ private SharedPreferences p;
     }
 
 
-
     private void filter(String text) {
         //new array list that will hold the filtered data
         ArrayList<NationObject> filterdNames = new ArrayList<>();
@@ -213,7 +215,7 @@ private SharedPreferences p;
         //looping through existing elements
         for (NationObject s : mDataset) {
             //if the existing elements contains the search input
-            if (s.getCountry().toLowerCase().startsWith(text.toLowerCase())||s.getCapital().toLowerCase().startsWith(text.toLowerCase())) {
+            if (s.getCountry().toLowerCase().startsWith(text.toLowerCase()) || s.getCapital().toLowerCase().startsWith(text.toLowerCase())) {
                 //adding the element to filtered list
                 filterdNames.add(s);
             }
@@ -222,8 +224,6 @@ private SharedPreferences p;
         //calling a method of the adapter class and passing the filtered list
         mAdapter.filterList(filterdNames);
     }
-
-
 
 
 }
