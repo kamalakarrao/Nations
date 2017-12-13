@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     List<NationObject> mDataset;
     public static final String JSON_URL = "https://restcountries.eu/rest/v2/all";
     private RecyclerViewAdapter mAdapter;
+    private ImageView no_internet;
 
     //private SharedPreferences p;
     private RecyclerView listRecyclerview;
@@ -38,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        no_internet = (ImageView) findViewById(R.id.no_internet);
+        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
+
+
+        no_internet.setVisibility(View.GONE);
 
       //  Paper.init(this);
 
@@ -133,14 +142,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         //success - parse JSON
 
+
+
                   //      Paper.book().write("Paper_Json_Data", response);
 
                         //   p.edit().putString("jsondata", response).commit();
 
-                        listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
                         listRecyclerview.setHasFixedSize(true);
                         listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
+
+                        no_internet.setVisibility(View.GONE);
+                        listRecyclerview.setVisibility(View.VISIBLE);
 
                       //  Log.d("fetched data", response.substring(0, 6000));
 
@@ -164,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(MainActivity.this, "Please Connect to Internet", Toast.LENGTH_SHORT).show();
 
+                        no_internet.setVisibility(View.VISIBLE);
+                        listRecyclerview.setVisibility(View.GONE);
 
                         // String jData = p.getString("jsondata", "");
                         /*String jData = "";
