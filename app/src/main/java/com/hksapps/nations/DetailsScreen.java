@@ -39,7 +39,7 @@ public class DetailsScreen extends AppCompatActivity {
         TextView calling__code = (TextView) findViewById(R.id.callingcode_xml);
         TextView lat_lng_coordinates = (TextView) findViewById(R.id.latlng_xml);
         TextView timezone = (TextView) findViewById(R.id.timezone_xml);
-        final TextView area = (TextView) findViewById(R.id.area_xml);
+         TextView area = (TextView) findViewById(R.id.area_xml);
         TextView numeric_code = (TextView) findViewById(R.id.numericcode_xml);
         TextView currencies = (TextView) findViewById(R.id.currencies_xml);
         TextView native_name = (TextView) findViewById(R.id.nativename_xml);
@@ -51,7 +51,7 @@ public class DetailsScreen extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        String country_text = getIntent().getStringExtra("country");
+        final String country_text = getIntent().getStringExtra("country");
 
         setTitle(country_text);
 
@@ -191,6 +191,8 @@ Longitude = latlng_array[1];
 
         }
 
+
+        //To Load Flag Image
         LoadSvgs svgs = new LoadSvgs();
         svgs.LoadImages(flag_text, flag, this);
 
@@ -210,78 +212,26 @@ Longitude = latlng_array[1];
         }
 
 
+        new Thread(new Runnable() {
+            public void run() {
+
+                LoadMapLayout(country_text);
+
+            }
+        }).start();
+
      //   mapLayout.markLocation(Double.parseDouble(Latitude+"000"), Double.parseDouble(Longitude+"000"),1);
-final String countryTitle = country_text;
-
-        mapLayout.setEventListener(new MapLayout.EventListener() {
-
-            @Override
-            public void onMapReady() {
-                // called when map layout is ready to handle API calls
-
-
-                mapLayout.addMarker("test_markers", new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude))
-                        ,countryTitle );
-
-
-                LatLng coordinate =new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude)); //Store these lat lng values somewhere. These should be constant.
-                CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
-                        coordinate, 5);
-                mapLayout.getMap().animateCamera(location);
-                mapLayout.updateCamera(true);
-
-            }
-
-            @Override
-            public void onZoneClicked(Zone zone, Polygon polygon) {
-                Log.i("","Polygon clicked: "+zone.getName()+", polygon id: "+polygon.getId());
-            }
-
-            @Override
-            public void onMarkerClicked(Marker marker, com.google.android.gms.maps.model.Marker marker1) {
-
-            }
-
-
-        });
 
 
 
 
+/*
 mapLayout.updateCamera(true);
-       /* map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String uri = String.format(Locale.ENGLISH, "geo:%3f,%3f", Double.parseDouble(Latitude), Double.parseDouble(Longitude));
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-
-                startActivity(intent);
-
-}
-
-        });*/
+*/
 
 
 
-      /*  Log.e("country_text", country_text);
-        Log.e("population_text", population_text);
-        Log.e("region_text", region_text);
-        Log.e("subregion_text", subregion_text);
-        Log.e("capital_text", capital_text);
-        Log.e("flag_text", flag_text);
-        Log.e("callingCode_text", callingCode_text);
-        Log.e("latlng_text", latlng_text);
-        Log.e("timezone_text", timezone_text);
-        Log.e("language_text", language_text);
-        Log.e("area_text", area_text);
-        Log.e("numericcode_text", numericcode_text);
-        Log.e("currencies_text", currencies_text);
-        Log.e("nativename_text", nativename_text);
-        Log.e("borders_text", borders_text);*/
-
-
-
+// Content for description of country
         StringBuilder str = new StringBuilder();
         str.append(country_text+" is a country in "+ region_text +" with the area of "+area_text+" sq kms.");
         str.append(" and it's subregions are "+subregion_text+".");
@@ -301,7 +251,44 @@ mapLayout.updateCamera(true);
 
 
 
+public void LoadMapLayout(String country_text){
 
+
+    final String countryTitle = country_text;
+
+    mapLayout.setEventListener(new MapLayout.EventListener() {
+
+        @Override
+        public void onMapReady() {
+            // called when map layout is ready to handle API calls
+
+
+            mapLayout.addMarker("test_markers", new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude))
+                    ,countryTitle );
+
+
+            LatLng coordinate =new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude)); //Store these lat lng values somewhere. These should be constant.
+            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
+                    coordinate, 5);
+            mapLayout.getMap().animateCamera(location);
+            mapLayout.updateCamera(true);
+
+        }
+
+        @Override
+        public void onZoneClicked(Zone zone, Polygon polygon) {
+            Log.i("","Polygon clicked: "+zone.getName()+", polygon id: "+polygon.getId());
+        }
+
+        @Override
+        public void onMarkerClicked(Marker marker, com.google.android.gms.maps.model.Marker marker1) {
+
+        }
+
+
+    });
+
+}
 
 
 

@@ -48,17 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         no_internet.setVisibility(View.GONE);
 
-      //  Paper.init(this);
-
-
-        // p = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-
-
-        //  ImageView img = (ImageView) findViewById(R.id.img);
-
-
-        //  Picasso.with(MainActivity.this).load("").resize(500,400).into(img);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,18 +57,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 sendRequest();
-                // startActivity(new Intent(MainActivity.this,MainActivity.class));
             }
         });
 
-     //   Log.d("Starting to fetch data", "303");
 
         sendRequest();
-
-
-      //  Log.d("Done fetching data", "403");
-
-        //  Log.d("list Test",mDataset.get(0).getCountry());
 
 
     }
@@ -106,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 
 
-                //    mAdapter.getFilter().filter(newText);
 
                 filter(newText.toString());
 
@@ -126,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
 
 
         return super.onOptionsItemSelected(item);
@@ -143,11 +123,6 @@ public class MainActivity extends AppCompatActivity {
                         //success - parse JSON
 
 
-
-                  //      Paper.book().write("Paper_Json_Data", response);
-
-                        //   p.edit().putString("jsondata", response).commit();
-
                         listRecyclerview.setHasFixedSize(true);
                         listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
@@ -155,14 +130,12 @@ public class MainActivity extends AppCompatActivity {
                         no_internet.setVisibility(View.GONE);
                         listRecyclerview.setVisibility(View.VISIBLE);
 
-                      //  Log.d("fetched data", response.substring(0, 6000));
 
 
                         JsonParse pj = new JsonParse(response);
                         pj.parseJSON();
                         mDataset = pj.getNations();
 
-                        //     Log.d("Response Test",mDataset.get(0).getCountry());
 
                         mAdapter = new RecyclerViewAdapter(mDataset, getApplicationContext());
 
@@ -180,39 +153,6 @@ public class MainActivity extends AppCompatActivity {
                         no_internet.setVisibility(View.VISIBLE);
                         listRecyclerview.setVisibility(View.GONE);
 
-                        // String jData = p.getString("jsondata", "");
-                        /*String jData = "";
-                        String responseFromPaper = Paper.book().read("Paper_Json_Data");
-                        if (responseFromPaper != null) {
-                            jData = responseFromPaper;
-                        }
-
-                        Toast.makeText(MainActivity.this, jData, Toast.LENGTH_SHORT).show();
-                        if (jData.length() <= 0) {
-
-
-                            Toast.makeText(MainActivity.this, "Please Connect to Internet", Toast.LENGTH_SHORT).show();
-                        } else {
-
-                            listRecyclerview = (RecyclerView) findViewById(R.id.list_recycler_view);
-                            listRecyclerview.setHasFixedSize(true);
-                            listRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
-                            Toast.makeText(MainActivity.this, "Offline Mode!", Toast.LENGTH_SHORT).show();
-
-                            JsonParse pj = new JsonParse(jData);
-                            pj.parseJSON();
-                            mDataset = pj.getNations();
-
-                            //     Log.d("Response Test",mDataset.get(0).getCountry());
-
-                            mAdapter = new RecyclerViewAdapter(mDataset, getApplicationContext());
-
-
-                            listRecyclerview.setAdapter(mAdapter);
-
-
-                        }*/
 
                     }
                 });
