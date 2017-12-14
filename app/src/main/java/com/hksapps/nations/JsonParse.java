@@ -13,29 +13,27 @@ import java.util.List;
 public class JsonParse {
 
     //Declare the arrays of fields you require
-    public static String[] countries;
-    public static String[] imageUrls;
-    public static String[] capital;
-    public static String[] region;
-    public static String[] population;
-    public static String[] lat_long;
-    public static String[] subregion;
-    public static String[] timezone;
-    public static String[] language;
-    public static String[] callingCode;
-    public static String[] area;
-    public static String[] nativename;
-    public static String[] numericCode;
-    public static String[] currencies;
-    public static String[] borders;
-
-    private JSONArray nations = null;
+    private static String[] countries;
+    private static String[] imageUrls;
+    private static String[] capital;
+    private static String[] region;
+    private static String[] population;
+    private static String[] lat_long;
+    private static String[] subregion;
+    private static String[] timezone;
+    private static String[] language;
+    private static String[] callingCode;
+    private static String[] area;
+    private static String[] nativename;
+    private static String[] numericCode;
+    private static String[] currencies;
+    private static String[] borders;
 
 
-    List<NationObject> AllNations;
+    private List<NationObject> AllNations;
 
 
-    private String json;
+    private final String json;
 
     public JsonParse(String json) {
 
@@ -43,11 +41,11 @@ public class JsonParse {
     }
 
     protected void parseJSON() {
-        JSONObject jsonObject = null;
+        JSONObject jsonObject;
 
         try {
 
-            nations = new JSONArray(json);
+            JSONArray nations = new JSONArray(json);
 
 
             countries = new String[nations.length()];

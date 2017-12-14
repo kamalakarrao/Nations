@@ -26,8 +26,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<NationObject> mDataset;
-    public static final String JSON_URL = "https://restcountries.eu/rest/v2/all";
+    private List<NationObject> mDataset;
+    private static final String JSON_URL = "https://restcountries.eu/rest/v2/all";
     private RecyclerViewAdapter mAdapter;
     private ImageView no_internet;
 
@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 
 
-
-                filter(newText.toString());
-
+if(mDataset!=null) {
+    filter(newText);
+}
 
                 return true;
             }
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
 
 

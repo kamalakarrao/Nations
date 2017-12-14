@@ -6,28 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:elevation="10dp"
     android:background="@drawable/shadow_no"
-android:scrollbars="none"
+    android:elevation="10dp"
     android:orientation="vertical"
-   >
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/flag_img"
             android:layout_width="300dp"
-            android:contentDescription="Country flag"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:background="@drawable/shadowbg"
             android:layout_margin="20dp"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:background="@drawable/shadowbg"
+            android:contentDescription="@string/country_flag"
+            android:scaleType="centerCrop" />
 
 
         <LinearLayout
@@ -42,20 +41,20 @@ android:scrollbars="none"
                 android:background="@drawable/shadowbg"
                 android:orientation="horizontal">
 
-               <!-- <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp" />-->
+                <!-- <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:layout_marginStart="15dp" />-->
 
 
                 <TextView
                     android:id="@+id/country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
-                    android:text="Country: "
+                    android:text="@string/country"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -64,18 +63,18 @@ android:scrollbars="none"
                     android:id="@+id/country_xml"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
-                    android:text="Country Name"
+                    android:text="@string/country_name"
                     android:textSize="18sp" />
             </LinearLayout>
 
-        <!--    <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="#424242" />-->
+            <!--    <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="#424242" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +87,7 @@ android:scrollbars="none"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                    />-->
 
 
@@ -96,9 +95,9 @@ android:scrollbars="none"
                     android:id="@+id/capital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
-                    android:text="Capital: "
+                    android:text="@string/capital"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -107,18 +106,18 @@ android:scrollbars="none"
                     android:id="@+id/capital_xml"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
-                    android:text="Capital Name"
+                    android:text="@string/capital_name"
                     android:textSize="18sp" />
             </LinearLayout>
 
-          <!--  <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="#424242" />-->
+            <!--  <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="5dp"
+                  android:background="#424242" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,19 +127,19 @@ android:scrollbars="none"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-              <!--  <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp" />-->
+                <!--  <ImageView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="15dp" />-->
 
 
                 <TextView
                     android:id="@+id/population"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
-                    android:text="Population: "
+                    android:text="@string/population"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -149,7 +148,7 @@ android:scrollbars="none"
                     android:id="@+id/population_xml"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
                     android:text=""
                     android:textSize="18sp" />
@@ -167,16 +166,16 @@ android:scrollbars="none"
                 <!--  <ImageView
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="15dp" />-->
+                      android:layout_marginStart="15dp" />-->
 
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
-                    android:text="Calling Code: "
+                    android:text="@string/calling_code"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -185,7 +184,7 @@ android:scrollbars="none"
                     android:id="@+id/callingcode_xml"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
                     android:text=""
                     android:textSize="18sp" />
@@ -193,12 +192,12 @@ android:scrollbars="none"
 
         </LinearLayout>
 
-     <!--   <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#424242" />-->
+        <!--   <TextView
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_marginLeft="5dp"
+               android:layout_marginRight="5dp"
+               android:background="#424242" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -211,7 +210,7 @@ android:scrollbars="none"
             <!--<ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/shadowbg" />-->
 
 
@@ -219,9 +218,9 @@ android:scrollbars="none"
                 android:id="@+id/region"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Region:  "
+                android:text="@string/region"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -230,7 +229,7 @@ android:scrollbars="none"
                 android:id="@+id/region_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -251,15 +250,15 @@ android:scrollbars="none"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginLeft="15dp" />-->
+                            android:layout_marginStart="15dp" />-->
 
             <TextView
                 android:id="@+id/sub_region"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Sub Region:  "
+                android:text="@string/sub_region"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -268,7 +267,7 @@ android:scrollbars="none"
                 android:id="@+id/subregion_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -292,20 +291,20 @@ android:scrollbars="none"
 
             android:orientation="horizontal">
 
-           <!-- <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/shadowbg" />-->
+            <!-- <ImageView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+ 
+                 android:layout_marginStart="15dp"
+                 android:src="@drawable/shadowbg" />-->
 
             <TextView
                 android:id="@+id/languages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Languages:  "
+                android:text="@string/languages"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -314,23 +313,18 @@ android:scrollbars="none"
                 android:id="@+id/languages_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
         </LinearLayout>
 
-   <!--     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#424242" />-->
-
-
-
-
-
+        <!--     <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="1dp"
+                 android:layout_marginLeft="5dp"
+                 android:layout_marginRight="5dp"
+                 android:background="#424242" />-->
 
 
         <LinearLayout
@@ -344,16 +338,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Timezones: "
+                android:text="@string/timezones"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -362,7 +356,7 @@ android:scrollbars="none"
                 android:id="@+id/timezone_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -380,16 +374,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Area: "
+                android:text="@string/area"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -398,7 +392,7 @@ android:scrollbars="none"
                 android:id="@+id/area_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -416,16 +410,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Numeric Code: "
+                android:text="@string/numeric_code"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -434,12 +428,11 @@ android:scrollbars="none"
                 android:id="@+id/numericcode_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -453,16 +446,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Currencies: "
+                android:text="@string/currencies"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -471,7 +464,7 @@ android:scrollbars="none"
                 android:id="@+id/currencies_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:padding="0dp"
                 android:text=""
                 android:textSize="16sp" />
@@ -489,16 +482,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Native name: "
+                android:text="@string/native_name"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -507,7 +500,7 @@ android:scrollbars="none"
                 android:id="@+id/nativename_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -525,16 +518,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Borders: "
+                android:text="@string/borders"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -543,12 +536,11 @@ android:scrollbars="none"
                 android:id="@+id/borders_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -562,16 +554,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
-                android:text="Coordinates: "
+                android:text="@string/coordinates"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -580,7 +572,7 @@ android:scrollbars="none"
                 android:id="@+id/latlng_xml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -598,16 +590,16 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:paddingTop="6dp"
-                android:text="Country Description:"
+                android:text="@string/country_description"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -616,7 +608,7 @@ android:scrollbars="none"
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:padding="6dp"
                 android:text=""
                 android:textSize="16sp" />
@@ -631,7 +623,6 @@ android:scrollbars="none"
             android:orientation="horizontal">
 
 
-
             <com.ubudu.gmaps.MapLayout
                 android:id="@+id/map"
                 android:layout_width="300dp"
@@ -640,29 +631,29 @@ android:scrollbars="none"
             <!--  <ImageView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="15dp" />-->
+                  android:layout_marginStart="15dp" />-->
 
 
-          <!--  <TextView
+            <!--  <TextView
+  
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="15dp"
+                  android:padding="10dp"
+                  android:text="Show on Map "
+                  android:textSize="18sp"
+                  android:id="@+id/map"
+                  android:textStyle="bold" />-->
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:padding="10dp"
-                android:text="Show on Map "
-                android:textSize="18sp"
-                android:id="@+id/map"
-                android:textStyle="bold" />-->
 
-
-           <!-- <TextView
-                android:id="@+id/latlng_xml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:padding="10dp"
-                android:text=""
-                android:textSize="18sp" />-->
+            <!-- <TextView
+                 android:id="@+id/latlng_xml"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="15dp"
+                 android:padding="10dp"
+                 android:text=""
+                 android:textSize="18sp" />-->
         </LinearLayout>
 
 

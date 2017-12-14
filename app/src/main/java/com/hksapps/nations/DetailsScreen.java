@@ -1,6 +1,5 @@
 package com.hksapps.nations;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,8 +20,9 @@ import com.ubudu.gmaps.model.Zone;
 
 public class DetailsScreen extends AppCompatActivity {
 
-    String Latitude, Longitude;
-    MapLayout mapLayout;
+    private String Latitude;
+    private String Longitude;
+    private MapLayout mapLayout;
 
 
     @Override
@@ -35,7 +35,7 @@ public class DetailsScreen extends AppCompatActivity {
         TextView country = (TextView) findViewById(R.id.country_xml);
         TextView region = (TextView) findViewById(R.id.region_xml);
         TextView subregion = (TextView) findViewById(R.id.subregion_xml);
-        ImageView flag = (ImageView) findViewById(R.id.flag_img);
+        final ImageView flag = (ImageView) findViewById(R.id.flag_img);
         TextView capital = (TextView) findViewById(R.id.capital_xml);
         TextView calling__code = (TextView) findViewById(R.id.callingcode_xml);
         TextView lat_lng_coordinates = (TextView) findViewById(R.id.latlng_xml);
@@ -50,7 +50,6 @@ public class DetailsScreen extends AppCompatActivity {
 
         //   TextView map = (TextView) findViewById(R.id.map);
 
-        Intent i = getIntent();
 
         final String country_text = getIntent().getStringExtra("country");
 
@@ -60,7 +59,7 @@ public class DetailsScreen extends AppCompatActivity {
         String region_text = getIntent().getStringExtra("region");
         String subregion_text = getIntent().getStringExtra("subregion");
         String capital_text = getIntent().getStringExtra("capital");
-        String flag_text = getIntent().getStringExtra("flag");
+        final String flag_text = getIntent().getStringExtra("flag");
         String callingCode_text = getIntent().getStringExtra("callingcode");
 
 
@@ -110,14 +109,14 @@ public class DetailsScreen extends AppCompatActivity {
         country.setText(country_text);
         capital.setText(capital_text);
         if (region_text.equals("") || region_text == null) {
-            region.setText("Not Available");
+            region.setText(R.string.not_available);
         } else {
             region.setText(region_text);
         }
 
 
         if (subregion_text.equals("") || subregion_text == null) {
-            subregion.setText("Not Available");
+            subregion.setText(R.string.not_available);
         } else {
             subregion.setText(subregion_text);
         }
@@ -125,14 +124,14 @@ public class DetailsScreen extends AppCompatActivity {
 
         if (callingCode_text.equals("") && callingCode_text == null) {
 
-            calling__code.setText("Not Available");
+            calling__code.setText(R.string.not_available);
         } else {
             calling__code.setText(callingCode_text);
         }
 
 
         if (lat_lng_coordinates.equals("") || lat_lng_coordinates == null) {
-            lat_lng_coordinates.setText("Not Available");
+            lat_lng_coordinates.setText(R.string.not_available);
         } else {
             lat_lng_coordinates.setText(latlng_text);
 
@@ -140,14 +139,14 @@ public class DetailsScreen extends AppCompatActivity {
 
 
         if (timezone_text.equals("") || timezone_text == null) {
-            timezone.setText("Not Available");
+            timezone.setText(R.string.not_available);
         } else {
             timezone.setText(timezone_text);
         }
 
 
         if (language_text.equals("") || language_text == null) {
-            languages.setText("Not Available");
+            languages.setText(R.string.not_available);
 
         } else {
             languages.setText(language_text);
@@ -155,7 +154,7 @@ public class DetailsScreen extends AppCompatActivity {
         }
 
         if (area_text.equals("") || area_text == null) {
-            area.setText("Not Available");
+            area.setText(R.string.not_available);
 
         } else {
             area.setText(area_text);
@@ -164,14 +163,14 @@ public class DetailsScreen extends AppCompatActivity {
 
 
         if (numericcode_text.equals("") || numericcode_text == null) {
-            numeric_code.setText("Not Available");
+            numeric_code.setText(R.string.not_available);
         } else {
             numeric_code.setText(numericcode_text);
         }
 
 
         if (currencies_text.equals("") && currencies_text == null) {
-            currencies.setText("Not Available");
+            currencies.setText(R.string.not_available);
         } else {
             currencies.setText(currencies_text);
 
@@ -179,23 +178,20 @@ public class DetailsScreen extends AppCompatActivity {
 
 
         if (nativename_text.equals("") || nativename_text == null) {
-            native_name.setText("Not Available");
+            native_name.setText(R.string.not_available);
         } else {
             native_name.setText(nativename_text);
         }
 
 
         if (borders_text.equals("") || borders_text == null) {
-            borders.setText("Not Available");
+            borders.setText(R.string.not_available);
         } else {
             borders.setText(borders_text);
 
         }
 
 
-        //To Load Flag Image
-        LoadSvgs svgs = new LoadSvgs();
-        svgs.LoadImages(flag_text, flag, this);
 
 
         mapLayout = (MapLayout) findViewById(R.id.map);
@@ -217,6 +213,10 @@ public class DetailsScreen extends AppCompatActivity {
             public void run() {
 
                 LoadMapLayout(country_text);
+
+                //To Load Flag Image
+                LoadSvgs svgs = new LoadSvgs();
+                svgs.LoadImages(flag_text, flag, DetailsScreen.this);
 
                 // Marker value = entery.getValue();
 

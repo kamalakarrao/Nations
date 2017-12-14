@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196F3"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -13,7 +12,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
-        android:contentDescription="Earth"
+        android:contentDescription="@string/earth"
         android:src="@drawable/world" />
 
     <TextView
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Nations"
+        android:text="@string/nations"
 
         android:textColor="#ffffff"
 

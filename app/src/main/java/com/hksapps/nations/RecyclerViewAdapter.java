@@ -2,6 +2,8 @@ package com.hksapps.nations;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +20,16 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder>  {
 
-    private ArrayList<NationObject> mArrayList;
-    private ArrayList<NationObject> mFilteredList;
+
     private List<NationObject> nationslist;
-    private Context context;
+    private final Context context;
 
     public RecyclerViewAdapter(List<NationObject> nationslist, Context context) {
         super();
 
     //    Log.d("Testing adapter", "In constructor of RecyclerViewAdapter");
 
-        mArrayList = (ArrayList<NationObject>) nationslist;
-        mFilteredList = (ArrayList<NationObject>) nationslist;
+
         this.nationslist = nationslist;
         this.context = context;
 
@@ -80,14 +80,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                 context.startActivity(i);
 
 
-             /*   NationObject object = nationslist.get(position);
-                Intent intent = new Intent(context, DetailsScreen.class);
-                Bundle args = new Bundle();
-                args.putSerializable("ARRAYLIST",(Serializable)object);
-                intent.putExtra("BUNDLE",args);
-                context.startActivity(intent);*/
-
-             //   Toast.makeText(context, nationslist.get(position).getCapital(),Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -95,8 +87,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     holder.country.setText(nationslist.get(position).getCountry());
 //Picasso.with(context).load(nationObject.getImageUrl().toString()).resize(500,400).into(holder.flag);
 
-    LoadSvgs svgs = new LoadSvgs();
-    svgs.LoadImages(nationslist.get(position).getImageUrl(), holder.flag, context);
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+
+
+                LoadSvgs svgs = new LoadSvgs();
+                svgs.LoadImages(nationslist.get(holder.getAdapterPosition()).getImageUrl(), holder.flag, context);
+                // Marker value = entery.getValue();
+
+            }
+        });
+
+
 
  //   Log.d("Testing image Url", nationslist.get(position).getImageUrl());
 
@@ -107,54 +110,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public int getItemCount() {
         return nationslist.size();
     }
-//holder.flag.setImageResource();
-
-
-
-  /*
-
-
-    @Override
-    public Filter getFilter() {
-
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-
-                String charString = charSequence.toString();
-
-                if (charString.isEmpty()) {
-
-                    mFilteredList = mArrayList;
-                } else {
-
-                    ArrayList<NationObject> filteredList = new ArrayList<>();
-
-                    filteredList.clear();
-                    for (NationObject androidVersion : mArrayList) {
-
-                    //    if (androidVersion.getCountry().toLowerCase().contains(charString.toLowerCase())) {
-                            if(charString.toLowerCase().equals(androidVersion.getCountry().toLowerCase())){
-Log.d("added_1",androidVersion.getCountry());
-                            filteredList.add(androidVersion);
-                        }
-                    }
-
-                    mFilteredList = (ArrayList<NationObject>) filteredList;
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = mFilteredList;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilteredList = (ArrayList<NationObject>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-    }*/
 
 
 

@@ -10,9 +10,7 @@ import android.widget.ImageView;
 
 public class SplashScreen extends Activity {
 
-    // Splash screen timer
-    private static int SPLASH_TIME_OUT = 3000;
-    ImageView world;
+    private ImageView world;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +20,7 @@ public class SplashScreen extends Activity {
         world = (ImageView) findViewById(R.id.world);
         show();
 
+        int SPLASH_TIME_OUT = 3000;
         new Handler().postDelayed(new Runnable() {
 
             /*
