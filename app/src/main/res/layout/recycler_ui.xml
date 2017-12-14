@@ -24,7 +24,7 @@
         android:id="@+id/flag"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@android:drawable/ic_lock_lock"
+        android:contentDescription="Flag Image"
         android:textColor="#212121"
         android:textSize="20sp" />
 

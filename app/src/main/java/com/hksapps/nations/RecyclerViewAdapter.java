@@ -48,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerViewHolder holder, int position) {
 
 
       //  NationObject nationObject = mFilteredList.get(position);
@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             public void onClick(View view) {
 
 
-                NationObject nationObject = nationslist.get(position);
+                NationObject nationObject = nationslist.get(holder.getAdapterPosition());
                 Intent i = new Intent(context,DetailsScreen.class);
                     i.putExtra("country",nationObject.getCountry());
                     i.putExtra("capital",nationObject.getCapital());

@@ -13,6 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
+        android:contentDescription="Earth"
         android:src="@drawable/world" />
 
     <TextView
