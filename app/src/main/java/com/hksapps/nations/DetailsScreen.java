@@ -2,6 +2,8 @@ package com.hksapps.nations;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +21,7 @@ import com.ubudu.gmaps.model.Zone;
 
 public class DetailsScreen extends AppCompatActivity {
 
-    String Latitude,Longitude;
+    String Latitude, Longitude;
     MapLayout mapLayout;
 
 
@@ -27,7 +29,6 @@ public class DetailsScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_screen);
-
 
 
         TextView population = (TextView) findViewById(R.id.population_xml);
@@ -39,7 +40,7 @@ public class DetailsScreen extends AppCompatActivity {
         TextView calling__code = (TextView) findViewById(R.id.callingcode_xml);
         TextView lat_lng_coordinates = (TextView) findViewById(R.id.latlng_xml);
         TextView timezone = (TextView) findViewById(R.id.timezone_xml);
-         TextView area = (TextView) findViewById(R.id.area_xml);
+        TextView area = (TextView) findViewById(R.id.area_xml);
         TextView numeric_code = (TextView) findViewById(R.id.numericcode_xml);
         TextView currencies = (TextView) findViewById(R.id.currencies_xml);
         TextView native_name = (TextView) findViewById(R.id.nativename_xml);
@@ -47,7 +48,7 @@ public class DetailsScreen extends AppCompatActivity {
         TextView languages = (TextView) findViewById(R.id.languages_xml);
         TextView description = (TextView) findViewById(R.id.description);
 
-     //   TextView map = (TextView) findViewById(R.id.map);
+        //   TextView map = (TextView) findViewById(R.id.map);
 
         Intent i = getIntent();
 
@@ -69,8 +70,8 @@ public class DetailsScreen extends AppCompatActivity {
             String[] latlng_array = latlng_text_all.split(",");
 
 
-Latitude = latlng_array[0];
-Longitude = latlng_array[1];
+            Latitude = latlng_array[0];
+            Longitude = latlng_array[1];
             latlng_text = "Lat: " + latlng_array[0] + "\n" + "Lng: " + latlng_array[1];
         }
 
@@ -199,104 +200,87 @@ Longitude = latlng_array[1];
 
         mapLayout = (MapLayout) findViewById(R.id.map);
 
-        mapLayout.init(this);
 
-        if(Latitude.length()>0&&Longitude.length()>0){
+        if (Latitude.length() > 0 && Longitude.length() > 0) {
 
 
             mapLayout.setVisibility(View.VISIBLE);
-        }else{
+        } else {
 
             mapLayout.setVisibility(View.GONE);
 
         }
 
 
-        new Thread(new Runnable() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
             public void run() {
 
                 LoadMapLayout(country_text);
 
+                // Marker value = entery.getValue();
+
             }
-        }).start();
-
-     //   mapLayout.markLocation(Double.parseDouble(Latitude+"000"), Double.parseDouble(Longitude+"000"),1);
-
-
-
-
-/*
-mapLayout.updateCamera(true);
-*/
-
+        });
 
 
 // Content for description of country
         StringBuilder str = new StringBuilder();
-        str.append(country_text+" is a country in "+ region_text +" with the area of "+area_text+" sq kms.");
-        str.append(" and it's subregions are "+subregion_text+".");
-        if(!(timezone_text.equals("")||timezone_text==null))
-        str.append(" The standard time observed throughout the "+country_text+ " with the time offset of "+timezone_text+".");
-        if(!(callingCode_text.equals("")||callingCode_text==null))
-            str.append(" The calling code is "+callingCode_text+"." );
-        str.append(" The capital of "+country_text+ " is "+capital_text+".");
-        if(!(borders_text.equals("")||timezone_text==null))
-            str.append("The neighbouring countries are "+borders_text);
+        str.append(country_text + " is a country in " + region_text + " with the area of " + area_text + " sq kms.");
+        str.append(" and it's subregions are " + subregion_text + ".");
+        if (!(timezone_text.equals("") || timezone_text == null))
+            str.append(" The standard time observed throughout the " + country_text + " with the time offset of " + timezone_text + ".");
+        if (!(callingCode_text.equals("") || callingCode_text == null))
+            str.append(" The calling code is " + callingCode_text + ".");
+        str.append(" The capital of " + country_text + " is " + capital_text + ".");
+        if (!(borders_text.equals("") || timezone_text == null))
+            str.append("The neighbouring countries are " + borders_text);
 
         description.setText(str);
 
     }
 
 
+    public void LoadMapLayout(String country_text) {
+
+        mapLayout.init(this);
 
 
+        final String countryTitle = country_text;
 
-public void LoadMapLayout(String country_text){
+        mapLayout.setEventListener(new MapLayout.EventListener() {
 
-
-    final String countryTitle = country_text;
-
-    mapLayout.setEventListener(new MapLayout.EventListener() {
-
-        @Override
-        public void onMapReady() {
-            // called when map layout is ready to handle API calls
+            @Override
+            public void onMapReady() {
+                // called when map layout is ready to handle API calls
 
 
-            mapLayout.addMarker("test_markers", new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude))
-                    ,countryTitle );
+                mapLayout.addMarker("test_markers", new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude))
+                        , countryTitle);
 
 
-            LatLng coordinate =new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude)); //Store these lat lng values somewhere. These should be constant.
-            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
-                    coordinate, 5);
-            mapLayout.getMap().animateCamera(location);
-            mapLayout.updateCamera(true);
+                LatLng coordinate = new LatLng(Double.parseDouble(Latitude), Double.parseDouble(Longitude)); //Store these lat lng values somewhere. These should be constant.
+                CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
+                        coordinate, 5);
+                mapLayout.getMap().animateCamera(location);
+                mapLayout.updateCamera(true);
 
-        }
+            }
 
-        @Override
-        public void onZoneClicked(Zone zone, Polygon polygon) {
-            Log.i("","Polygon clicked: "+zone.getName()+", polygon id: "+polygon.getId());
-        }
+            @Override
+            public void onZoneClicked(Zone zone, Polygon polygon) {
+                Log.i("", "Polygon clicked: " + zone.getName() + ", polygon id: " + polygon.getId());
+            }
 
-        @Override
-        public void onMarkerClicked(Marker marker, com.google.android.gms.maps.model.Marker marker1) {
+            @Override
+            public void onMarkerClicked(Marker marker, com.google.android.gms.maps.model.Marker marker1) {
 
-        }
-
-
-    });
-
-}
+            }
 
 
+        });
 
-
-
-
-
-
+    }
 
 
 }
